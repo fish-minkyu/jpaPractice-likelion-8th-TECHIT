@@ -1,7 +1,9 @@
 package com.jpapractice.likelionhomework.article.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
+@Getter
 @Entity
 public class Comment {
   @Id
