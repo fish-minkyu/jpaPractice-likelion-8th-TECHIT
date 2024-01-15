@@ -32,7 +32,7 @@ public class ArticleDto {
     this.writer = writer;
   }
 
-  public ArticleDto fromEntity(Article entity) {
+  public static ArticleDto fromEntity(Article entity) {
     ArticleDto dto = new ArticleDto();
     dto.id = entity.getId();
     dto.title = entity.getTitle();

@@ -14,64 +14,65 @@ import org.springframework.web.bind.annotation.*;
 public class ArticleController {
   private final ArticleService articleService;
 
-  // Create
-  @GetMapping("/create-view")
-  public String createView() {
-
-    return "article/create";
+  // 랜딩 페이지
+  @GetMapping
+  public String readAll(Model model) {
+    model.addAttribute("articles", articleService.readAll());
+    return "article/index";
   }
 
-  @PostMapping("/create")
+  // Create
+  @GetMapping("/write")
+  public String createView() {
+
+    return "article/write";
+  }
+
+  @PostMapping
   public String create(
-    @ModelAttribute ArticleDto article
+    @ModelAttribute ArticleDto dto
     ) {
-    articleService.create(article);
-    return "redirect:/article";
+    Long newId = articleService.create(dto).getId();
+    return String.format("redirect:/article/%d", newId);
   }
 
   // Read
-  // read-all, 랜딩 페이지
-  @GetMapping("/list")
-  public String readAll() {
-    return "article/list";
-  }
-
-  // read-one
-  @GetMapping("/{id}/detail")
-  public String readOne() {
-
-    return "article/detail";
+  @GetMapping("/{id}")
+  public String readOne(
+    @PathVariable("id") Long id,
+    Model model
+  ) {
+    model.addAttribute("article", articleService.readOne(id));
+    return "article/read";
   }
 
   // Update
-  @GetMapping("/{id}/update-view")
-  public String updateView() {
+  @GetMapping("/{id}/edit")
+  public String updateView(
+    @PathVariable("id") Long id,
+    Model model
+  ) {
+    model.addAttribute("article", articleService.readOne(id));
     return "article/update";
   }
 
   @PostMapping("/{id}/update")
   public String update(
     @PathVariable("id") Long id,
+    @ModelAttribute ArticleDto dto,
     Model model
   ) {
-
+    articleService.update(dto);
     return String.format("redirect:/article/%d", id);
   }
 
   // Delete
-  @GetMapping("/{id}/delete-view")
-  public String deleteView() {
-
-    return "article/delete";
-  }
-
   @PostMapping("/{id}/delete")
   public String delete(
     @PathVariable("id") Long id,
     Model model
   ) {
-
+    articleService.delete(id);
     return "redirect:/article";
   }
-
 }
