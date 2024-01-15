@@ -1,4 +1,4 @@
-package com.jpapractice.likelionhomework.article;
+package com.jpapractice.likelionhomework.article.repo;
 
 import com.jpapractice.likelionhomework.article.entity.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -2,6 +2,7 @@ package com.jpapractice.likelionhomework.article;
 
 import com.jpapractice.likelionhomework.article.dto.ArticleDto;
 import com.jpapractice.likelionhomework.article.entity.Article;
+import com.jpapractice.likelionhomework.article.repo.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
