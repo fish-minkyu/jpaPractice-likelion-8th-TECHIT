@@ -36,7 +36,8 @@
   <div class="d-flex justify-content-between">
     <h5 th:text="${comment.writer}"></h5>
     <div class="d-flex">
-      <a th:href="@{/article/{aId}/comment/{cId}/edit(aId=${article.id},cId=${comment.id})}" class="btn btn-warning me-2">Edit</a>
+      <a th:href="@{/article/{aId}/comment/{cId}/edit(aId=${article.id},cId=${comment.id})}"
+         class="btn btn-warning me-2">Edit</a>
       <form th:action="@{/article/{aId}/comment/{cId}/delete(aId=${article.id},cId=${comment.id})}" method="post">
         <input type="submit" class="btn btn-danger" value="Delete">
       </form>

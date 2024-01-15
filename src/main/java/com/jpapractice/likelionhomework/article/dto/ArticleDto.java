@@ -32,6 +32,7 @@ public class ArticleDto {
     this.writer = writer;
   }
 
+  // static factory method - way1
   public static ArticleDto fromEntity(Article entity) {
     ArticleDto dto = new ArticleDto();
     dto.id = entity.getId();
